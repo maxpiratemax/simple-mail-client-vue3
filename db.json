@@ -1,0 +1,40 @@
+{
+  "emails": [
+    {
+      "id": 1,
+      "from": "community@codingame.com",
+      "subject": "Level Up 🏅",
+      "body": "Hello!\n\n How is it going so far?\n\nIf you’re completely new to programming, even simple puzzles will be challenging. I suggest learning the basics of programming first, like String manipulation, arrays, conditionals and loops.\n\n  Here's a couple of hints to help you get started 🤗\n\n All the puzzles here work the same. You’re given a problem, and the skeleton of a program to solve it. The skeleton reads the inputs from the server and gives back a default (but incorrect) output.\n\n Just modify the code and output the correct answer for every possible case.\n\n Easy, right? 💪\n\n You might need some time to get accustomed to things here, but you’ll be able to tackle harder problems soon, like the one Mathis solved with dynamic programming on our YouTube channel.\n\n Cheers,\n\n The Codingame Team",
+      "sentAt": "2022-05-16T18:25:43.511Z",
+      "archived": false,
+      "read": false
+    },
+    {
+      "id": 2,
+      "from": "no-reply@heroku.com",
+      "subject": "Important Information About Heroku Free Products",
+      "body": "Dear Customer,\n\n Thank you for being a Heroku user. Starting November 28,\n\n2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® will no longer be available. You can learn more about these and other important changes from our GM, Bob Wise, on the Heroku blog.\n\nExisting free dynos and Heroku data add-ons will be impacted, so action by you is required. To prevent any disruption to your apps or data using free plans, you will need to upgrade from a free plan to a paid plan before November 28, 2022.\n\nFor instructions on how to upgrade and for other questions, please visit our FAQ.\n\nThank you,\n\nThe Heroku Team",
+      "sentAt": "2022-08-25T21:34:43.511Z",
+      "archived": false,
+      "read": true
+    },
+    {
+      "id": 3,
+      "from": "news@nvidia.com",
+      "subject": "Please update your NVIDIA Developer profile",
+      "body": "TAILOR INFORMATION TO YOUR INTERESTS\n\n We want to send you the right developer-related resources and news that align with your development area(s), industry, and role. These preferences will help us give you the most relevant information. Could you take a moment to update your profile?\n\n Your developer profile includes:\n\n Development Area(s) of Interest\n\n Industry\n\n Job Role\n\n   Organization / University\n\n Location\n\n Communication Opt-in Preferences\n\n UPDATE YOUR PROFILE\n\n Have feedback? Send us an email developercontact@nvidia.com.",
+      "sentAt": "2022-07-13T19:41:43.511Z",
+      "archived": false,
+      "read": false
+    },
+    {
+      "id": 4,
+      "from": "anthony@vuejsdevelopers.com",
+      "subject": "'Vue 3 Release Roadmap' + 6 more must-read articles from this week",
+      "body": "Newsletter Issue #161",
+      "sentAt": "2020-03-24T18:25:43.511Z",
+      "archived": false,
+      "read": true
+    }
+  ]
+}
