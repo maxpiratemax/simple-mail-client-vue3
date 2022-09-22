@@ -1,4 +1,5 @@
 <template>
+  {{filteredEmails}}
   <button @click="selectScreen('inbox')" :disabled="selectedScreen == 'inbox'"
     :class="selectedScreen == 'inbox' ? 'orange' : ''">Inbox</button>
   <button @click="selectScreen('archive')" :disabled="selectedScreen == 'archive'"
@@ -40,14 +41,19 @@ import MailView from '@/components/MailView.vue'
 import ModalView from '@/components/ModalView.vue'
 import BulkActionBar from '@/components/BulkActionBar.vue';
 import useEmailSelection from '@/composables/use-email-selection'
+import useUpdateEmail from '@/composables/use-update-email'
 import { reactive, ref } from 'vue';
+import supabase from '@/supabase/init'
 
 export default {
   components: {
     MailView, ModalView, BulkActionBar
   },
   async setup() {
-    let { data: emails } = await axios.get('http://localhost:3000/emails')
+    // let { data: emails } = await axios.get('http://localhost:3000/emails')
+
+    let { data: emails } = await axios.get(supabase.SUPABASE_URL, { headers: {apiKey: supabase.SUPABASE_ANON_KEY}})
+
 
     return {
       emailSelection: useEmailSelection(),
@@ -65,6 +71,7 @@ export default {
     },
     filteredEmails() {
       if (this.selectedScreen == 'inbox') {
+        console.log(this.sortedEmails.filter(e => !e.archived))
         return this.sortedEmails.filter(e => !e.archived)
       } else {
         return this.sortedEmails.filter(e => e.archived)
@@ -98,7 +105,8 @@ export default {
       this.updateEmail(email)
     },
     updateEmail(email) {
-      axios.put(`http://localhost:3000/emails/${email.id}`, email)
+      // axios.put(`http://localhost:3000/emails/${email.id}`, email)
+    useUpdateEmail(email)
     }
   }
 }
