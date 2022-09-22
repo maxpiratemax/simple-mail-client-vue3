@@ -17,7 +17,6 @@ import { format } from 'date-fns'
 import marked from 'marked'
 import axios from 'axios'
 import useKeyDown from '../composables/use-keydown'
-import useUpdateEmail from '@/composables/use-update-email'
 
 export default {
   setup(props, { emit }) {
@@ -25,16 +24,22 @@ export default {
     let toggleNext = () => { emit('changeEmail', { changeIndex: 1 }) }
     let togglePrev = () => { emit('changeEmail', { changeIndex: -1 }) }
 
-    let toggleRead = () => {
+    let toggleRead = async () => {
       email.read = !email.read
       // axios.put(`http://localhost:3000/emails/${email.id}`, email)
-      useUpdateEmail(email)
+      const {error} = await supabase
+        .from('emails')
+        .update(email)
+        .eq('id', email.id)
     }
 
-    let toggleArchive = () => {
+    let toggleArchive = async () => {
       email.archived = !email.archived
       // axios.put(`http://localhost:3000/emails/${email.id}`, email)
-      useUpdateEmail(email)
+      const {error} = await supabase
+        .from('emails')
+        .update(email)
+        .eq('id', email.id)
     }
 
     useKeyDown([

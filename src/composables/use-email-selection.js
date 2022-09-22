@@ -1,6 +1,5 @@
 import { reactive } from 'vue'
-import axios from 'axios'
-import useUpdateEmail from '@/composables/use-update-email'
+import {supabase} from '@/supabase/init'
 
 
 let emails = reactive(new Set());
@@ -25,10 +24,13 @@ export const useEmailSelection = function () {
   }
 
   let forSelected = (fn) => {
-    emails.forEach((email) => {
+    emails.forEach(async(email) => {
       fn(email);
       // axios.put(`http://localhost:3000/emails/${email.id}`, email)
-      useUpdateEmail(email)
+      const {error} = await supabase
+        .from('emails')
+        .update(email)
+        .eq('id', email.id)
     })
     clear()
   }

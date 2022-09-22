@@ -1,5 +1,4 @@
 <template>
-  {{filteredEmails}}
   <button @click="selectScreen('inbox')" :disabled="selectedScreen == 'inbox'"
     :class="selectedScreen == 'inbox' ? 'orange' : ''">Inbox</button>
   <button @click="selectScreen('archive')" :disabled="selectedScreen == 'archive'"
@@ -14,7 +13,7 @@
             <td>
               <input type="checkbox" @click="emailSelection.toggle(email)" :checked="emailSelection.emails.has(email)">
             </td>
-            <td @click="openEmail(email)">{{email.from}}</td>
+            <td @click="openEmail(email)" style="min-width: 170px">{{email.from}}</td>
             <td @click="openEmail(email)">
               <p><span :class="[!email.read ? 'title' : '']"> {{email.subject}}</span> - {{email.body}}</p>
             </td>
@@ -41,9 +40,8 @@ import MailView from '@/components/MailView.vue'
 import ModalView from '@/components/ModalView.vue'
 import BulkActionBar from '@/components/BulkActionBar.vue';
 import useEmailSelection from '@/composables/use-email-selection'
-import useUpdateEmail from '@/composables/use-update-email'
-import { reactive, ref } from 'vue';
-import supabase from '@/supabase/init'
+import { ref } from 'vue';
+import {supabase} from '@/supabase/init'
 
 export default {
   components: {
@@ -52,7 +50,12 @@ export default {
   async setup() {
     // let { data: emails } = await axios.get('http://localhost:3000/emails')
 
-    let { data: emails } = await axios.get(supabase.SUPABASE_URL, { headers: {apiKey: supabase.SUPABASE_ANON_KEY}})
+    // let { data: emails } = await axios.get(`${supabaseUrl}/rest/v1/emails`, { headers: { apiKey: supabaseKey } })
+
+
+    let { data: emails, error } = await supabase
+      .from('emails')
+      .select('*')
 
 
     return {
@@ -71,7 +74,6 @@ export default {
     },
     filteredEmails() {
       if (this.selectedScreen == 'inbox') {
-        console.log(this.sortedEmails.filter(e => !e.archived))
         return this.sortedEmails.filter(e => !e.archived)
       } else {
         return this.sortedEmails.filter(e => e.archived)
@@ -104,9 +106,14 @@ export default {
       email.archived = !email.archived
       this.updateEmail(email)
     },
-    updateEmail(email) {
+    async updateEmail(email) {
       // axios.put(`http://localhost:3000/emails/${email.id}`, email)
-    useUpdateEmail(email)
+
+      const {error} = await supabase
+        .from('emails')
+        .update(email)
+        .eq('id', email.id)
+
     }
   }
 }
