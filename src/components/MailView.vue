@@ -14,13 +14,13 @@
 
 <script>
 import { format } from 'date-fns'
-import marked from 'marked'
-import axios from 'axios'
+import {marked} from 'marked'
 import useKeyDown from '../composables/use-keydown'
 
 export default {
   setup(props, { emit }) {
     let email = props.email
+    email.body = email.body.replaceAll('\\n', '\n')
     let toggleNext = () => { emit('changeEmail', { changeIndex: 1 }) }
     let togglePrev = () => { emit('changeEmail', { changeIndex: -1 }) }
 

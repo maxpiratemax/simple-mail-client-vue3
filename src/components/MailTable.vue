@@ -35,7 +35,6 @@
 
 <script>
 import { format } from 'date-fns'
-import axios from 'axios'
 import MailView from '@/components/MailView.vue'
 import ModalView from '@/components/ModalView.vue'
 import BulkActionBar from '@/components/BulkActionBar.vue';
@@ -113,6 +112,7 @@ export default {
         .from('emails')
         .update(email)
         .eq('id', email.id)
+        email.body.replace('Dear', '')
 
     }
   }
