@@ -1,10 +1,10 @@
 <template>
   <div class="email-display">
     <div>
-      <button :class="btnArchive ? 'btn-animation' : ''" @click="toggleArchive">{{email.archived ? 'Move to Inbox (e)' : 'Archive (e)'}}</button>
-      <button :class="btnRead ? 'btn-animation' : ''" @click="toggleRead">{{email.read ? 'Mark Unread (r)' : 'Mark Read (r)'}}</button>
-      <button :class="btnPrev ? 'btn-animation' : ''" @click="togglePrev">Prev (j)</button>
-      <button :class="btnNext ? 'btn-animation' : ''" @click="toggleNext">Next (k)</button>
+      <button :class="!btnArchive ? 'btn-animation' : ''" @click="toggleArchive">{{email.archived ? 'Move to Inbox (e)' : 'Archive (e)'}}</button>
+      <button :class="!btnRead ? 'btn-animation' : ''" @click="toggleRead">{{email.read ? 'Mark Unread (r)' : 'Mark Read (r)'}}</button>
+      <button :class="!btnPrev ? 'btn-animation' : ''" @click="togglePrev">Prev (j)</button>
+      <button :class="!btnNext ? 'btn-animation' : ''" @click="toggleNext">Next (k)</button>
     </div>
     <h2 class="mb-0">Subject: <strong>{{email.subject}}</strong></h2>
     <div><em>From {{email.from}} on {{format(new Date(email.sentAt), 'MMM do yyyy')}}</em></div>
@@ -26,11 +26,12 @@ export default {
     let btnNext = ref(true)
     let btnPrev = ref(true)
     let email = props.email
+    
     email.body = email.body.replaceAll('\\n', '\n')
 
     function toggleAnimation(btn){
       btn.value = !btn.value
-      setTimeout(() => {btn.value = !btn.value}, 0)
+      setTimeout(() => {btn.value = !btn.value}, 300)
     }
 
     let toggleNext = () => { 
