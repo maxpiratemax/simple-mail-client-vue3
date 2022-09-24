@@ -15,7 +15,7 @@
             </td>
             <td @click="openEmail(email)" style="min-width: 170px">{{email.from}}</td>
             <td @click="openEmail(email)">
-              <p><span :class="[!email.read ? 'title' : '']"> {{email.subject}}</span> - {{email.body}}</p>
+              <p><span :class="[!email.read ? 'title' : '']"> {{email.subject}}</span> - {{email.textBody}}</p>
             </td>
             <td class="date" @click="openEmail(email)">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
             <td><button @click="archiveEmail(email)">{{selectedScreen == 'inbox' ? 'Archive' : 'Restore'}} </button>

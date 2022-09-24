@@ -104,6 +104,7 @@ input[type='checkbox']:checked {
   position: fixed;
   left: 0;
   top: 0;
+  overflow-x: hidden;
 }
 
 .overlay {
