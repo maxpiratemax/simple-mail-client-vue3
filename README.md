@@ -1,4 +1,5 @@
-# vue-3-demo
+# simple-mail-client-vue3
+Build: https://maxpiratemax.github.io/simple-mail-client-vue3-build/
 
 ## Project setup
 ```
